@@ -9,6 +9,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { signOut } from "next-auth/react";
 import LogOutButton from "@/components/LogOutButton";
+import AuthButton from "@/components/AuthButton";
 export default async function Home() {
   const session = await getServerSession(authOptions);
   return (
@@ -26,12 +27,8 @@ export default async function Home() {
       <div className="relative">
         <h2 className="text-5xl">NEXT AUTH</h2>
       </div>
-      <div className="flex gap-5">
-      <LoginButton></LoginButton>
-        <Link href={"/register"} className="btn">
-          Register
-        </Link>
-        <LogOutButton></LogOutButton>
+      <div className="">
+        <AuthButton></AuthButton>
       </div>
           <h2 className="font-bold">User server</h2>
         <div className="border-2 p-4 rounded-xl">{JSON.stringify(session)}</div>
