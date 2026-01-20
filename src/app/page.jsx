@@ -7,6 +7,8 @@ import LoginButton from "@/components/LoginButton";
 import UserCard from "@/components/UserCard";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
+import { signOut } from "next-auth/react";
+import LogOutButton from "@/components/LogOutButton";
 export default async function Home() {
   const session = await getServerSession(authOptions);
   return (
@@ -29,6 +31,7 @@ export default async function Home() {
         <Link href={"/register"} className="btn">
           Register
         </Link>
+        <LogOutButton></LogOutButton>
       </div>
           <h2 className="font-bold">User server</h2>
         <div className="border-2 p-4 rounded-xl">{JSON.stringify(session)}</div>
