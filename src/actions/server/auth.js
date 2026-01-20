@@ -29,5 +29,9 @@ if (result.acknowledged){
 return {
     success: true,
     message: "User created successfully",
-  }}
+  }}else{
+    return{
+        message:"failed to create account"
+    }
+  }
 }
