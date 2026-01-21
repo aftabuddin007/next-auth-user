@@ -2,6 +2,8 @@ import { dbConnect } from "@/provider/dbConnect";
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcryptjs";
+import GoogleProvider from "next-auth/providers/google";
+
 const userList = [
     {name:'abc',password:'1234'},
     {name:'xyz',password:'5678'},
@@ -37,7 +39,11 @@ export const authOptions = {
         //   my own login logic
       return null
     }
-  })
+  }),
+   GoogleProvider({
+    clientId: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET
+  }),
     // ...add more providers here
   ],
   callbacks: {
