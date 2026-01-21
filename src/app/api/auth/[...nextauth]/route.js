@@ -52,7 +52,25 @@ export const authOptions = {
   ],
   callbacks: {
   async signIn({ user, account, profile, email, credentials }) {
+     try{
+const payload = {...user,role:"user",provider:account.provider,
+      providerId:ProviderAccountId,
+      createdAt:new Date().toISOString()
+    }
+    if(!user?.email){
+      return false
+    }
+    const isExist = (await dbConnect('users')).findOne({email:user.email})
+    if(!isExist){
+      const result  = (await dbConnect('users')).insertOne(payload)
+    }
     return true
+     } 
+     catch(error)
+{
+return false
+}
+    
   },
   // async redirect({ url, baseUrl }) {
   //   return baseUrl
